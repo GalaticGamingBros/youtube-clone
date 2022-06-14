@@ -9,6 +9,8 @@ function App() {
       <Routes>
         <Route path="/About" element={<About />} />
       </Routes>
+      {/* suggest footer to group */}
+      <footer>Youtube Clone ©GalaticGamingBros</footer>
     </div>
   );
 }

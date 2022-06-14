@@ -12,6 +12,7 @@
   }
 
   #bioSection {
+    border: 1px solid black;
     grid-column: 2;
     text-align: center;
 
@@ -26,6 +27,7 @@
   }
 
   #githubSection {
+    border: 1px solid black;
     text-align: center;
     grid-column: 1;
     grid-row: 2;
@@ -35,9 +37,17 @@
       transition: 1s;
       border: 5px solid black;
     }
+
+    Button {
+      &:hover {
+        transition: 0.8s;
+        border: 5px solid red;
+      }
+    }
   }
 
   #descriptionSection {
+    border: 1px solid black;
     grid-column: 1 / span 2;
     text-align: center;
     display: grid;

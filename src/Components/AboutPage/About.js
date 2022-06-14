@@ -10,8 +10,6 @@ const About = () => {
         <p className="firstNames">
           <strong>Antonio</strong>
           <br />
-          lorem ipsum lolodsfbdsfffbdsfsdfsdfff sfsddfdsfdsfsdfsdfsf
-          sfdsfsdfsdfsdfsdfds fsfdsfdsfsfsfds
         </p>
         <p className="firstNames">
           <strong>Abdullah</strong>
@@ -65,16 +63,30 @@ const About = () => {
         <h3 className="headerTitles" id="descriptionTitle">
           Description
         </h3>
-        <p id="description">
-          This application was created by the GitHub organization{" "}
-          <strong>GalaticGamingBros</strong>
-        </p>
+        <section id="description">
+          <p>
+            This application was created by the GitHub organization{" "}
+            <strong>GalaticGamingBros</strong>
+          </p>
+          <p>
+            This is our youtube app. This app allows you to search for videos
+            that are currently on youtube. You can then click on any of the
+            video's thumbnail and watch that video.
+          </p>
+          <p>
+            While you're on the video's page you can fill out a comment form
+            which you can then submit in order to leave a comment which will be
+            shown immediately.
+          </p>
+        </section>
         <ul id="techList">
-          <strong>Technologies Used:</strong>
+          <strong>Technologies</strong>
           <li>HTML</li>
           <li>SCSS</li>
+          <li>Javascript</li>
           <li>ReactJs</li>
           <li>Netlify</li>
+          <li>Youtube API</li>
         </ul>
       </section>
     </section>
