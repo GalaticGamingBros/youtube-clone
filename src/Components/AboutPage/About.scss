@@ -1,0 +1,65 @@
+#aboutSection {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  .headerTitles {
+    text-decoration: underline;
+  }
+
+  #aboutHeader {
+    text-align: center;
+    grid-column: 1 / span 2;
+  }
+
+  #bioSection {
+    grid-column: 2;
+    text-align: center;
+
+    &:hover {
+      transition: 1s;
+      border: 5px solid black;
+    }
+
+    .firstNames {
+      text-align: center;
+    }
+  }
+
+  #githubSection {
+    text-align: center;
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+
+    &:hover {
+      transition: 1s;
+      border: 5px solid black;
+    }
+  }
+
+  #descriptionSection {
+    grid-column: 1 / span 2;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    #descriptionTitle {
+      grid-column: 1 / span 2;
+    }
+
+    #techList {
+      grid-column: 1;
+      grid-row: 2;
+      list-style-type: none;
+    }
+
+    #description {
+      grid-column: 2;
+    }
+
+    &:hover {
+      transition: 1s;
+      border: 5px solid black;
+    }
+  }
+}
