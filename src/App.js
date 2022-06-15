@@ -1,16 +1,13 @@
 import "./App.scss";
-import { Route, Routes } from "react-router-dom";
-import About from "./Components/AboutPage/About";
+import NavBar from "./Components/NavBar/NavBar";
+import Main from "./Components/Main/Main";
 
 function App() {
   return (
     <div>
       <header>Youtube</header>
-      <Routes>
-        <Route path="/About" element={<About />} />
-      </Routes>
-      {/* suggest footer to group */}
-      <footer>Youtube Clone ©GalaticGamingBros</footer>
+      <NavBar />
+      <Main />
     </div>
   );
 }
