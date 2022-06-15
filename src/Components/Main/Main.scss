@@ -1,0 +1,30 @@
+.main-search {
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.search-bar {
+  width: 700px;
+  height: 37px;
+}
+
+.search-results-containter {
+  margin-top: 4em;
+  display: grid;
+  justify-content: center;
+}
+
+.no-search-results {
+  padding-left: 10.4em;
+  padding-right: 10.4em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  background-color: #d6d8d9;
+  border-radius: 5px;
+}
+
+.btn {
+  margin-bottom: 4px;
+  width: 120px;
+}

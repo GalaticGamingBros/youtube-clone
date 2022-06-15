@@ -1,14 +1,16 @@
 import React from "react";
 
+import { Button, Form } from "react-bootstrap";
+
 function Search() {
   return (
     <>
       <div className="main-search">
         <div>
           <input placeholder="Search..." className="search-bar"></input>
-          <button type="button" class="btn btn-danger">
+          <Button variant="danger" type="button" class="btn">
             Search
-          </button>
+          </Button>
         </div>
       </div>
     </>
