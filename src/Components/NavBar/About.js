@@ -10,18 +10,28 @@ const About = () => {
         <p className="firstNames">
           <strong>Antonio</strong>
           <br />
+          My name is Antonio Shivers. I'm a software engineer from the 8.3
+          cohort at Pursuit. My interests include: Computer programming, playing
+          video games, watching anime and cartoons. A long term goal of mine is
+          to transition into video game engineering after I have gained more
+          experience as a software engineer. If you would like to see some of
+          the stuff I have worked on feel free to check out my GitHub!
         </p>
         <p className="firstNames">
           <strong>Abdullah</strong>
           <br />
-          lorem ipsum lolodsfbdsfffbdsfsdfsdfff sfsddfdsfdsfsdfsdfsf
-          sfdsfsdfsdfsdfsdfds fsfdsfdsfsfsfds
+          My name is Abdullah Tasfiek. I'm a software engineer from the 8.3
+          cohort at Pursuit. Other than programming, I enjoy going on hikes,
+          weight lifting, and playing video games. I goal of mine is to get a
+          work from home software engineering job so I can travel more often. I
+          don't want to be a programmer that stays inside all day. I encourage
+          software engineers to be more active and adventurous! If you would
+          like to know more about me, check out my Github!
         </p>
         <p className="firstNames">
           <strong>Cesar</strong>
           <br />
-          lorem ipsum lolodsfbdsfffbdsfsdfsdfff sfsddfdsfdsfsdfsdfsf
-          sfdsfsdfsdfsdfsdfds fsfdsfdsfsfsfds
+          Awaiting Bio
         </p>
       </section>
 
