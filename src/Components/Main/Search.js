@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { Form, Button } from "react-bootstrap";
-import SearchResults from "./SearchResults";
 
 import "./Search.scss";
 
@@ -9,7 +8,6 @@ class Search extends Component {
     super();
     this.state = {
       searchBar: "",
-      resultsArr: [],
     };
   }
 
@@ -27,55 +25,10 @@ class Search extends Component {
     )
       .then((res) => res.json())
       .then((results) => {
-        this.getVideos(results);
-        this.renderSearchResults(results);
+        this.props.getThumbnails(results);
       });
 
     this.clearForm();
-  };
-
-  getVideos = (results) => {
-    const videos = results.items.map((vids) => {
-      fetch(
-        `https://www.googleapis.com/youtube/v3/videos?maxResults=10&key=${process.env.REACT_APP_API_KEY}&part=id`
-      )
-        .then((res) => res.json())
-        .then((videos) => {
-          console.log(videos);
-        });
-    });
-  };
-
-  renderSearchResults = (results) => {
-    const videoArr = [];
-
-    let keyNum = 0;
-
-    const videos = results.items.map((vids) => {
-      // console.log(vids.snippet.thumbnails.high);
-      const convertTitle = vids.snippet.title;
-
-      // console.log(vids.id.videoId);
-
-      return (
-        <div key={keyNum++}>
-          <img
-            className="videoThumbnail"
-            src={vids.snippet.thumbnails.high.url}
-            alt={vids.snippet.title}
-          />
-          <p>
-            <strong>{convertTitle}</strong>
-          </p>
-        </div>
-      );
-    });
-
-    this.setState({
-      resultsArr: videos,
-    });
-
-    // resultsArrCopy.push(results.items);
   };
 
   clearForm = () => {
@@ -85,12 +38,12 @@ class Search extends Component {
   };
 
   render() {
-    const { searchBar, resultsArr } = this.state;
+    const { searchBar } = this.state;
 
     return (
       <section className="main-search">
         <div>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} id="searchForm">
             <Form.Group className="mb-3" controlId="searchBar">
               <Form.Control
                 type="text"
@@ -99,11 +52,10 @@ class Search extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button variant="dark" type="submit">
+            <Button variant="dark" type="submit" id="searchButton">
               SEARCH
             </Button>
           </Form>
-          <SearchResults resultsArr={resultsArr} />
         </div>
       </section>
     );

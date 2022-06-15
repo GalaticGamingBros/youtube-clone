@@ -1,13 +1,11 @@
-import React from "react";
-
-function SearchResults() {
+const searchResults = (props) => {
   return (
     <div>
-      <section>
-        <h2>No Search Results Yet!, Please submit a search above!</h2>
-      </section>
+      {props.thumbnailsArr.length < 1
+        ? "No search results yet!"
+        : props.thumbnailsArr}
     </div>
   );
-}
+};
 
-export default SearchResults;
+export default searchResults;
