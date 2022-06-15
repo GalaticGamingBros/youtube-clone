@@ -10,12 +10,13 @@ const About = () => {
         <p className="firstNames">
           <strong>Antonio</strong>
           <br />
-          My name is Antonio Shivers. I'm a software engineer from the 8.3
-          cohort at Pursuit. My interests include: Computer programming, playing
-          video games, watching anime and cartoons. A long term goal of mine is
-          to transition into video game engineering after I have gained more
-          experience as a software engineer. If you would like to see some of
-          the stuff I have worked on feel free to check out my GitHub!
+          My name is Antonio Shivers. I'm a full stack software engineer, I am
+          currently a pursuit fellow enrolled in the 8.3 cohort. My interests
+          include: Computer programming, playing video games, watching anime and
+          cartoons. A long term goal of mine is to transition into video game
+          engineering after I have gained more experience as a software
+          engineer. If you would like to see some of the stuff I have worked on
+          feel free to check out my GitHub!
         </p>
         <p className="firstNames">
           <strong>Abdullah</strong>
@@ -31,7 +32,9 @@ const About = () => {
         <p className="firstNames">
           <strong>Cesar</strong>
           <br />
-          Awaiting Bio
+          My name is Cesar Ortiz. I'm a full stack software engineer currently
+          enrolled in the pursuit fellowship. Pursuit is a 12 month training
+          program with a 9% acceptance rate.
         </p>
       </section>
 
