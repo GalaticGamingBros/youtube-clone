@@ -1,11 +1,11 @@
+import "./App.scss";
 import Main from "./Components/Main/Main";
-// import NavBar from "./Components/NavBar/NavBar";
+import NavBar from "./Components/NavBar/NavBar";
 
 function App() {
   return (
     <div>
-      <header>Youtube</header>
-      {/* <NavBar /> */}
+      <NavBar />
       <Main />
     </div>
   );
