@@ -12,6 +12,8 @@ class Main extends Component {
     super();
     this.state = {
       thumbnailsArr: [],
+      isOpen: false,
+      errors: null,
     };
   }
 
@@ -53,8 +55,22 @@ class Main extends Component {
     return converter.documentElement.textContent;
   };
 
+  errors = (err) => {
+    this.setState({
+      errors: err,
+      isOpen: true,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      isOpen: false,
+      searchBar: "",
+    });
+  };
+
   render() {
-    const { thumbnailsArr } = this.state;
+    const { thumbnailsArr, errors, isOpen } = this.state;
     let keyNum = 0;
 
     return (
@@ -67,10 +83,14 @@ class Main extends Component {
                 key={(keyNum += 1)}
                 thumbnailsArr={thumbnailsArr}
                 getThumbnails={this.getThumbnails}
+                errors={this.errors}
               />,
               <SearchResults
                 key={(keyNum += 2)}
                 thumbnailsArr={thumbnailsArr}
+                errors={errors}
+                isOpen={isOpen}
+                closeModal={this.closeModal}
               />,
             ]}
           />

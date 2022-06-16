@@ -26,7 +26,8 @@ class Search extends Component {
       .then((res) => res.json())
       .then((results) => {
         this.props.getThumbnails(results);
-      });
+      })
+      .catch((err) => this.props.errors(err));
 
     this.clearForm();
   };
