@@ -1,0 +1,13 @@
+.videoThumbnail {
+  cursor: pointer;
+  width: 300px;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.thumbnailTitle {
+  font-size: 15px;
+}

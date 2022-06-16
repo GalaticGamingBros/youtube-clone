@@ -1,0 +1,16 @@
+.main-search {
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+
+  #searchForm {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    #searchButton {
+      height: 2.5em;
+      margin-bottom: 4px;
+      width: 120px;
+    }
+  }
+}
