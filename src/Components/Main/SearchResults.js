@@ -1,3 +1,5 @@
+import "./SearchResults.scss";
+
 const searchResults = (props) => {
   return (
     <div>
@@ -7,11 +9,9 @@ const searchResults = (props) => {
             props.thumbnailsArr.length < 1 ? "no-search-results" : "showResults"
           }
         >
-          <h5>
-            {props.thumbnailsArr.length < 1
-              ? "No search results yet!"
-              : props.thumbnailsArr}
-          </h5>
+          {props.thumbnailsArr.length < 1
+            ? "No search results yet!"
+            : props.thumbnailsArr}
         </div>
       </div>
     </div>

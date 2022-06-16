@@ -51,12 +51,7 @@ class Search extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button
-            variant="danger"
-            type="submit"
-            className="btn"
-            id="searchButton"
-          >
+          <Button variant="danger" type="submit" id="searchButton">
             SEARCH
           </Button>
         </Form>

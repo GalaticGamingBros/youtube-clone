@@ -1,8 +1,9 @@
 import { Component } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import About from "../NavBar/About";
 import Search from "./Search";
 import SearchResults from "./SearchResults";
+import ShowPage from "../ShowPage/ShowPage";
 
 import "./Main.scss";
 
@@ -16,32 +17,40 @@ class Main extends Component {
 
   getThumbnails = (results) => {
     let keyNum = 0;
-    const videosArr = [];
 
     const videos = results.items.map((vids) => {
-      const convertTitle = vids.snippet.title;
+      const videoTitle = vids.snippet.title;
 
       if (vids.id.videoId) {
         return (
           <div key={keyNum++}>
-            <img
-              className="videoThumbnail"
-              src={vids.snippet.thumbnails.high.url}
-              alt={vids.snippet.title}
-            />
+            <Link to={`/videos/${vids.id.videoId}`}>
+              <img
+                className="videoThumbnail"
+                src={vids.snippet.thumbnails.high.url}
+                alt={vids.snippet.title}
+              />
+            </Link>
             <p>
-              <strong>{convertTitle}</strong>
+              <strong className="thumbnailTitle">
+                {this.convertTitle(videoTitle)}
+              </strong>
             </p>
           </div>
         );
       }
 
-      return videosArr;
+      return null;
     });
 
     this.setState({
       thumbnailsArr: videos,
     });
+  };
+
+  convertTitle = (string) => {
+    let converter = new DOMParser().parseFromString(string, "text/html");
+    return converter.documentElement.textContent;
   };
 
   render() {
@@ -67,6 +76,7 @@ class Main extends Component {
           />
 
           <Route path="/About" element={<About />} />
+          <Route path="/videos/:id" element={<ShowPage />} />
         </Routes>
       </div>
     );
