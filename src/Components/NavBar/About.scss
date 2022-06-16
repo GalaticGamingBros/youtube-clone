@@ -72,4 +72,16 @@
       border: 5px solid black;
     }
   }
+
+  #aboutFooter {
+    text-align: center;
+    grid-column: 1 / span 2;
+    border: 1px solid black;
+    font-size: 35px;
+
+    &:hover {
+      transition: 1s;
+      border: 5px solid black;
+    }
+  }
 }
