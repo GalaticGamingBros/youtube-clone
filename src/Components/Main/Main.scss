@@ -1,12 +1,17 @@
 .main-search {
-  display: grid;
   justify-content: center;
   margin-top: 3em;
-}
 
-.search-bar {
-  width: 700px;
-  height: 37px;
+  #searchForm {
+    display: grid;
+    grid-template-columns: 500px 100px;
+
+    #searchBar {
+      border: 5px solid purple;
+      // max-width: 700px;
+      // width: 50%;
+    }
+  }
 }
 
 .search-results-containter {
@@ -24,7 +29,6 @@
   border-radius: 5px;
 }
 
-.btn {
-  margin-bottom: 4px;
-  width: 120px;
+#searchButton {
+  height: 2.5em;
 }

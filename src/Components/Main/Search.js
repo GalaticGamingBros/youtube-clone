@@ -43,7 +43,7 @@ class Search extends Component {
     return (
       <section className="main-search">
         <Form onSubmit={this.handleSubmit} id="searchForm">
-          <Form.Group className="mb-3 search-bar" controlId="searchBar">
+          <Form.Group className="mb-3" controlId="searchBar">
             <Form.Control
               type="text"
               placeholder="Search..."
@@ -51,7 +51,12 @@ class Search extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button variant="danger" type="submit" className="btn">
+          <Button
+            variant="danger"
+            type="submit"
+            className="btn"
+            id="searchButton"
+          >
             SEARCH
           </Button>
         </Form>
