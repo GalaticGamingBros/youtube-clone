@@ -1,21 +1,3 @@
 .videoThumbnail {
   width: 300px;
 }
-
-.main-search {
-  // border: 5px solid cyan;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  justify-content: center;
-  margin-top: 3em;
-
-  #searchForm {
-    grid-column: 1;
-  }
-
-  #searchButton {
-    // border: 5px solid red;
-    grid-column: 2;
-    grid-row: 2;
-  }
-}

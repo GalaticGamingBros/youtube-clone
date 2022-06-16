@@ -44,15 +44,20 @@ class Search extends Component {
       <section className="main-search">
         <div>
           <Form onSubmit={this.handleSubmit} id="searchForm">
-            <Form.Group className="mb-3" controlId="searchBar">
+            <Form.Group className="mb-3 search-bar" controlId="searchBar">
               <Form.Control
                 type="text"
-                placeholder="Type something"
+                placeholder="Search..."
                 value={searchBar}
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button variant="dark" type="submit" id="searchButton">
+            <Button
+              variant="danger"
+              type="submit"
+              id="searchButton"
+              className="btn"
+            >
               SEARCH
             </Button>
           </Form>

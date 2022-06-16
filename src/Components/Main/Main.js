@@ -4,6 +4,8 @@ import About from "../NavBar/About";
 import Search from "./Search";
 import SearchResults from "./SearchResults";
 
+import "./Main.scss";
+
 class Main extends Component {
   constructor() {
     super();
