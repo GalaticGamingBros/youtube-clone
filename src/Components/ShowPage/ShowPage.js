@@ -1,7 +1,6 @@
 import { Component } from "react";
 import YouTube from "react-youtube";
 import withParams from "../HOC/withParams";
-
 import "./ShowPage.scss";
 
 class Showpage extends Component {
