@@ -86,6 +86,11 @@
 
     #galaticButton {
       width: 25%;
+
+      &:hover {
+        transition: 0.8s;
+        border: 5px solid red;
+      }
     }
   }
 }
