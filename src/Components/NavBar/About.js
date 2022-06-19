@@ -109,7 +109,9 @@ const About = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button variant="dark">©GalaticGamingBros</Button>
+          <Button variant="dark" id="galaticButton">
+            ©GalaticGamingBros
+          </Button>
         </a>
       </footer>
     </section>
