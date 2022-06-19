@@ -1,7 +1,19 @@
-import { useParams } from "react-router-dom";
+import { Component } from "react";
+import YouTube from "react-youtube";
+import withParams from "../HOC/withParams";
 
-const showpage = (props) => {
-  return <div className="showpage">hello from showpage</div>;
-};
+import "./ShowPage.scss";
 
-export default showpage;
+class Showpage extends Component {
+  render() {
+    let id = this.props.params.id;
+
+    return (
+      <section className="showPage">
+        <YouTube className="videoPlayer" videoId={id} />
+      </section>
+    );
+  }
+}
+
+export default withParams(Showpage);
