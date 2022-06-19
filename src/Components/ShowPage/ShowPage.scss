@@ -1,6 +1,10 @@
 .showPage {
-  border: 5px solid cyan;
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 5%;
+
+  .videoPlayer {
+    margin-bottom: 5%;
+  }
 }
