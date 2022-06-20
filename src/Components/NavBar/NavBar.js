@@ -10,8 +10,8 @@ const NavBar = () => {
         <img
           id="youtube"
           src={YoutubeLogo}
-          // width="200"
-          // height="200"
+          width="2000"
+          height="200"
           alt="wait until the page loads"
         />
         <strong id="home">
