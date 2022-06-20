@@ -1,6 +1,7 @@
 import { Component } from "react";
 import YouTube from "react-youtube";
 import withParams from "../HOC/withParams";
+import CommentsForm from "./CommentsForm";
 
 import "./ShowPage.scss";
 
@@ -11,6 +12,7 @@ class Showpage extends Component {
     return (
       <section className="showPage">
         <YouTube className="videoPlayer" videoId={id} />
+        <CommentsForm />
       </section>
     );
   }
