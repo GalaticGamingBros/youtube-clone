@@ -4,18 +4,20 @@
 
   .headerTitles {
     text-decoration: underline;
+    text-shadow: 3px 3px red, -2px -2px cyan;
   }
 
   #aboutHeader {
     text-align: center;
     grid-column: 1 / span 2;
+    text-shadow: 3px 3px red, -2px -2px cyan;
   }
 
   #bioSection {
     border: 1px solid black;
     grid-column: 2;
     text-align: center;
-
+  
     &:hover {
       transition: 1s;
       border: 5px solid black;
@@ -78,6 +80,7 @@
     grid-column: 1 / span 2;
     border: 1px solid black;
     font-size: 35px;
+    text-shadow: 3px 3px red, -2px -2px cyan;
 
     &:hover {
       transition: 1s;

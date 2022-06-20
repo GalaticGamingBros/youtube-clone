@@ -16,17 +16,28 @@
 #youtube {
   padding-left: 100px;
   padding-right: 450px;
-  font-size: 50px;
-  color: blue;
 }
 
 #home {
   padding-right: 450px;
-  font-size: 50px;
+  text-decoration: none;
+  color: white;
+  &:hover {
+    color: grey;
+}
 }
 
 #about {
     padding-right: 250px;
-    font-size: 50px;
     padding: 10px;
+    text-decoration: none;
+    color: white;
+    &:hover {
+        color: grey;
+    }
+}
+
+.youtube-logo {
+    width: 1px;
+    height: 1px;
 }

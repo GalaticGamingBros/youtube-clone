@@ -103,7 +103,7 @@ const About = () => {
         </ul>
       </section>
       <footer id="aboutFooter">
-        Youtube Clone
+        Youtube Clone{" "}
         <a
           href="https://github.com/GalaticGamingBros"
           target="_blank"
