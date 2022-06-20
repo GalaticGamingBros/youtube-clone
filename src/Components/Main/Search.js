@@ -2,7 +2,6 @@ import { Component } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 
 import "./Search.scss";
-import searchResults from "./SearchResults";
 
 class Search extends Component {
   constructor() {
