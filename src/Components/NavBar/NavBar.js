@@ -5,23 +5,22 @@ import YoutubeLogo from "../../Images/youtubeLogo.gif";
 
 const NavBar = () => {
   return (
-    <div className="header-container">
-      <header className="nav">
-        <img
-          id="youtube"
-          src={YoutubeLogo}
-          width="2000"
-          height="200"
-          alt="wait until the page loads"
-        />
-        <strong id="home">
-          <Link to="/">Home</Link>
-        </strong>
-        <strong id="about">
-          <Link to="/about">About</Link>
-        </strong>
-      </header>
-    </div>
+    <header className="nav" id="youtube">
+      <img
+        className="Youtube-logo"
+        src={YoutubeLogo}
+        width="150"
+        height="100"
+        alt="wait until the page loads"
+      />
+      <Link to="/" id="home">
+        Home
+      </Link>
+
+      <Link to="/about" id="about">
+        About
+      </Link>
+    </header>
   );
 };
 

@@ -12,6 +12,7 @@ class Showpage extends Component {
     return (
       <section className="showPage">
         <YouTube className="videoPlayer" videoId={id} />
+        <hr className="break-line"></hr>
         <CommentsForm />
       </section>
     );

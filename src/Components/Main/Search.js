@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 
 import "./Search.scss";
 
@@ -8,6 +8,10 @@ class Search extends Component {
     super();
     this.state = {
       searchBar: "",
+      searchResult: "",
+      searched: false,
+      isOpen: false,
+      errors: null,
     };
   }
 
@@ -19,17 +23,23 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?maxResults=10&q=${this.state.searchBar}&key=${process.env.REACT_APP_API_KEY}&part=snippet`
-    )
-      .then((res) => res.json())
-      .then((results) => {
-        this.props.getThumbnails(results);
-      })
-      .catch((err) => this.props.errors(err));
-
-    this.clearForm();
+    if (this.state.searchBar === "") {
+      this.handleError();
+    } else {
+      fetch(
+        `https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=${this.state.searchBar}&key=${process.env.REACT_APP_API_KEY}&part=snippet`
+      )
+        .then((res) => res.json())
+        .then((results) => {
+          this.props.getThumbnails(results);
+        })
+        .catch((err) => this.props.errors(err));
+      this.setState({
+        searchResult: this.state.searchBar,
+        searched: true,
+      });
+      this.clearForm();
+    }
   };
 
   clearForm = () => {
@@ -38,8 +48,22 @@ class Search extends Component {
     });
   };
 
+  handleError = () => {
+    this.setState({
+      isOpen: true,
+      errors: true,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      isOpen: false,
+      errors: null,
+    });
+  };
+
   render() {
-    const { searchBar } = this.state;
+    const { searchBar, searchResult, searched, errors, isOpen } = this.state;
 
     return (
       <section className="main-search">
@@ -56,6 +80,15 @@ class Search extends Component {
             SEARCH
           </Button>
         </Form>
+        {errors ? (
+          <Modal show={isOpen} onHide={this.closeModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>ERROR CODE: 400</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>You cannot submit an empty search!</Modal.Body>
+          </Modal>
+        ) : null}
+        {searched ? <p>Previously Searched: {searchResult}</p> : null}
       </section>
     );
   }
