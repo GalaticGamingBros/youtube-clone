@@ -16,72 +16,64 @@ export default class CommentsForm extends Component {
     this.setState({ comment: event.target.value });
   };
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     let commentsArrayCopy = [...this.state.commentsArray];
-    console.log(commentsArrayCopy);
-    const { commentsArray } = this.state;
+    console.log("commnetsArrayCopy:", commentsArrayCopy);
     commentsArrayCopy.push({
       name: this.state.name,
       comment: this.state.comment,
     });
+
     this.setState({
       commentsArray: commentsArrayCopy,
     });
-    console.log("commentsArray:", commentsArray);
-    let commentArrayUpdated = commentsArray.map((comment) => {
-      console.log("map comment:", comment);
+  };
+
+  addComment = () => {
+    const { commentsArray } = this.state;
+    let keyComment = 0;
+    const comments = commentsArray.map((comment) => {
+      return (
+        <li key={keyComment++}>
+          {comment.name}
+          <br></br>
+          {comment.comment}
+        </li>
+      );
     });
-    // for (let comment of commentsArrayCopy) {
-    //   console.log("comment:", comment);
-    //   <li>{comment}</li>;
-    // }
-    // this.setState({
-    //   commentsArray: commentArrayUpdated,
-    // });
+    return comments;
   };
 
   render() {
-    // console.log(this.state);
     return (
-      <div>
-        <div>
-          {/* <Form.Group controlId="formBasicName">
-            <Form.Label>Name</Form.Label>
+      <div className="Form">
+        <Form onSubmit={this.handleSubmit} className="CommentSection">
+          <Form.Group controlId="formBasicName">
+            <Form.Label className="NameLabel">Name</Form.Label>
             <Form.Control
               type="text"
               placeholder="Name..."
-              value={name}
-              onChange={(e) => this.setState({ name: e.target.value })}
-            /> */}
-          <Form></Form>
-          <label>Name</label>
-          <div>
-            <input
               value={this.state.name}
-              onChange={this.handleNameChange}
-              placeholder="Name..."
-            ></input>
-          </div>
-          <div>
-            <label>Comment</label>
-          </div>
-          <div>
-            <input
+              onChange={(e) => this.setState({ name: e.target.value })}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicComment">
+            <Form.Label>Comment</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              placeholder="Comment..."
               value={this.state.comment}
-              onChange={this.handleCommentChange}
-              placeholder="..."
-            ></input>
-          </div>
-        </div>
-        <br></br>
-        <button
-          type="button"
-          className="btn btn-primary btn-sm"
-          onClick={this.handleSubmit}
-        >
-          Submit
-        </button>
-        <ul>{this.state.commentsArray}</ul>
+              onChange={(e) => this.setState({ comment: e.target.value })}
+            />
+          </Form.Group>
+          <br />
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          <ul>{this.addComment()}</ul>
+        </Form>
       </div>
     );
   }
