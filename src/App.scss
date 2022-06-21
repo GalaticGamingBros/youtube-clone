@@ -4,9 +4,6 @@
 }
 
 .nav {
-  //   text-align: center;
-  //   display: grid;
-  //   grid-template-columns: repeat(3, 1fr);
   background-color: red;
   font-size: 25px;
   padding: 20px;
@@ -21,17 +18,28 @@
   margin-top: 30px;
   text-decoration: none;
   color: white;
+  padding-right: 15px;
+  padding-left: 15px;
+
   &:hover {
     color: grey;
   }
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 #about {
   margin-top: 30px;
   text-decoration: none;
   color: white;
+
+  &:hover {
+    color: grey;
+  }
+}
+
+#signup {
+  color: white;
+  text-decoration: none;
+
   &:hover {
     color: grey;
   }

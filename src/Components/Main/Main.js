@@ -5,6 +5,8 @@ import Search from "./Search";
 import SearchResults from "./SearchResults";
 import ShowPage from "../ShowPage/ShowPage";
 
+import Signup from "../Signup/Signup";
+
 import "./Main.scss";
 
 class Main extends Component {
@@ -97,6 +99,8 @@ class Main extends Component {
 
           <Route path="/About" element={<About />} />
           <Route path="/videos/:id" element={<ShowPage />} />
+
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
     );
