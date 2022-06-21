@@ -23,12 +23,6 @@ class Signup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    // const client = axios.create({
-    //   baseURL: "http://localhost:9000/api/",
-
-    //   devURL: "https://ggb-youtube-clone-server.herokuapp.com/get",
-    // });
-
     const { username, password, email } = this.state;
 
     const user = {
@@ -37,20 +31,12 @@ class Signup extends Component {
       password: password,
     };
 
-    // post request \\
-    // client
-    //   .get("/get")
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    // const baseURL = "http://localhost:9000/api/";
 
-    const baseURL = "http://localhost:9000/api/";
+    const devURL = "https://git.heroku.com/ggb-youtube-clone-server.git/api";
 
     axios
-      .post(`${baseURL}signup`, user)
+      .post(`${devURL}/signup`, user)
       .then((res) => {
         console.log(res);
       })
