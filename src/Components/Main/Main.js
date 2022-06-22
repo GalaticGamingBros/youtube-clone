@@ -5,7 +5,9 @@ import Search from "./Search";
 import SearchResults from "./SearchResults";
 import ShowPage from "../ShowPage/ShowPage";
 
-import Signup from "../Signup/Signup";
+import Signup from "../NavBar/Signup/Signup";
+
+import DisplayCurrentUser from "./DisplayCurrentUser";
 
 import "./Main.scss";
 
@@ -16,6 +18,12 @@ class Main extends Component {
       thumbnailsArr: [],
       isOpen: false,
       errors: null,
+      currentUser: {
+        username: "",
+        password: "",
+        email: "",
+        id: "",
+      },
     };
   }
 
@@ -71,6 +79,17 @@ class Main extends Component {
     });
   };
 
+  displayCurrentUser = (userData) => {
+    this.setState({
+      currentUser: {
+        username: userData.username,
+        password: userData.password,
+        email: userData.email,
+        id: userData._id,
+      },
+    });
+  };
+
   render() {
     const { thumbnailsArr, errors, isOpen } = this.state;
     let keyNum = 0;
@@ -81,14 +100,18 @@ class Main extends Component {
           <Route
             path="/"
             element={[
-              <Search
+              <DisplayCurrentUser
                 key={(keyNum += 1)}
+                currentUser={this.state.currentUser}
+              />,
+              <Search
+                key={(keyNum += 2)}
                 thumbnailsArr={thumbnailsArr}
                 getThumbnails={this.getThumbnails}
                 errors={this.errors}
               />,
               <SearchResults
-                key={(keyNum += 2)}
+                key={(keyNum += 3)}
                 thumbnailsArr={thumbnailsArr}
                 errors={errors}
                 isOpen={isOpen}
@@ -100,7 +123,15 @@ class Main extends Component {
           <Route path="/About" element={<About />} />
           <Route path="/videos/:id" element={<ShowPage />} />
 
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/signup"
+            element={
+              <Signup
+                currentUser={this.state.currentUser}
+                displayCurrentUser={this.displayCurrentUser}
+              />
+            }
+          />
         </Routes>
       </div>
     );

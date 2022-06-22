@@ -4,8 +4,8 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 class Signup extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       username: "",
       password: "",
@@ -39,12 +39,13 @@ class Signup extends Component {
     axios
       .post(`${devURL}/signup`, user)
       .then((res) => {
-        console.log(res);
+        this.props.displayCurrentUser(res.data);
       })
       .catch((err) => {
         this.setstate({ errors: err.response.data.message });
       });
 
+    this.clearForm();
     // get request \\
     // axios
     //   .get(devURL)
@@ -54,7 +55,17 @@ class Signup extends Component {
     //   .catch((err) => console.log(err));
   };
 
+  clearForm = () => {
+    this.setState({
+      username: "",
+      password: "",
+      email: "",
+    });
+  };
+
   render() {
+    // console.log(this.props.currentUser);
+
     return (
       <section>
         <Form onSubmit={this.handleSubmit}>
