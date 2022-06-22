@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
+// import { Navigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -10,6 +11,7 @@ class SignIn extends Component {
       email: "",
       password: "",
       isOpen: false,
+      canRedirect: false,
       errors: null,
     };
   }
@@ -27,7 +29,6 @@ class SignIn extends Component {
 
     const devURL = "https://ggb-youtube-clone-server.herokuapp.com/api";
 
-    // get request \\
     await axios
       .get(`${devURL}/get`)
       .then((res) => {
@@ -35,8 +36,9 @@ class SignIn extends Component {
         this.setState({ isOpen: true });
       })
       .catch((err) => {
-        this.setstate({ errors: err.response.data.message });
+        this.handleErrors(err);
       });
+
     this.clearForm();
   };
 
@@ -52,6 +54,8 @@ class SignIn extends Component {
     } else {
       this.setState({ errors: true });
     }
+
+    this.redirectToHome();
   };
 
   clearForm = () => {
@@ -68,8 +72,20 @@ class SignIn extends Component {
     });
   };
 
+  redirectToHome = () => {
+    this.setState({
+      canRedirect: true,
+    });
+  };
+
+  handleErrors = (err) => {
+    this.setState({
+      errors: err,
+    });
+  };
+
   render() {
-    const { email, password, isOpen, errors } = this.state;
+    const { email, password, isOpen, /*canRedirect,*/ errors } = this.state;
 
     return (
       <div>
@@ -116,6 +132,7 @@ class SignIn extends Component {
             </>
           )}
         </Modal>
+        {/* {canRedirect ? <Navigate to="/" replace /> : null} */}
       </div>
     );
   }
