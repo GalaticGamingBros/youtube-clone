@@ -18,7 +18,7 @@ class Showpage extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     let id = this.props.params.id;
 
     axios
@@ -42,7 +42,7 @@ class Showpage extends Component {
           errors: err,
         });
       });
-  }
+  };
 
   closeModal = () => {
     this.setState({
