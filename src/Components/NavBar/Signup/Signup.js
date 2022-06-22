@@ -64,8 +64,6 @@ class Signup extends Component {
   };
 
   render() {
-    // console.log(this.props.currentUser);
-
     return (
       <section>
         <Form onSubmit={this.handleSubmit}>

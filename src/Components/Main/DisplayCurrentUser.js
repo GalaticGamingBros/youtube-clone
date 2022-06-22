@@ -1,8 +1,6 @@
 import "./DisplayCurrentUser.scss";
 
 const displayCurrentUser = (currentUser) => {
-  console.log("main user: ", currentUser);
-  console.log("username: ", currentUser.currentUser.username);
   return (
     <div className="currentUserContainer">
       {currentUser.currentUser.username ? (
