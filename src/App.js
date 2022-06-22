@@ -1,14 +1,14 @@
 import "./App.scss";
 import Main from "./Components/Main/Main";
 import NavBar from "./Components/NavBar/NavBar";
-import FetchBackend from "./Components/Backend/FetchBackend";
+// import FetchBackend from "./Components/Backend/FetchBackend";
 
 function App() {
   return (
     <div>
       <NavBar />
       <Main />
-      <FetchBackend />
+      {/* <FetchBackend /> */}
     </div>
   );
 }

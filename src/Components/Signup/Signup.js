@@ -42,7 +42,7 @@ class Signup extends Component {
         console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        this.setstate({ errors: err.response.data.message });
       });
 
     // get request \\
@@ -91,8 +91,7 @@ class Signup extends Component {
           <Button variant="dark" type="submit">
             Submit
           </Button>
-
-          {this.state.errors && <p>{this.state.errors}</p>}
+          {this.state.errors ? <p>{this.state.errors}</p> : null}
         </Form>
       </section>
     );
