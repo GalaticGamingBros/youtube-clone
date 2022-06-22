@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 
 import axios from "axios";
 
@@ -9,6 +9,7 @@ class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
+      isOpen: false,
       errors: null,
     };
   }
@@ -31,11 +32,11 @@ class SignIn extends Component {
       .get(`${devURL}/get`)
       .then((res) => {
         this.checkIfUserExists(res.data);
+        this.setState({ isOpen: true });
       })
       .catch((err) => {
         this.setstate({ errors: err.response.data.message });
       });
-
     this.clearForm();
   };
 
@@ -49,10 +50,7 @@ class SignIn extends Component {
     if (user) {
       this.props.displayCurrentUser(user);
     } else {
-      this.setState({ errors: "Invalid Credentials" });
-      setTimeout(() => {
-        this.setState({ errors: null });
-      }, 3000);
+      this.setState({ errors: true });
     }
   };
 
@@ -63,7 +61,16 @@ class SignIn extends Component {
     });
   };
 
+  closeModal = () => {
+    this.setState({
+      isOpen: false,
+      errors: null,
+    });
+  };
+
   render() {
+    const { email, password, isOpen, errors } = this.state;
+
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
@@ -72,7 +79,7 @@ class SignIn extends Component {
             <Form.Control
               type="email"
               name="email"
-              value={this.state.email}
+              value={email}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -81,16 +88,34 @@ class SignIn extends Component {
             <Form.Control
               type="password"
               name="password"
-              value={this.state.password}
+              value={password}
               onChange={this.handleChange}
             />
           </Form.Group>
           <br />
-          {this.state.errors ? <p>{this.state.errors}</p> : null}
           <Button variant="dark" type="submit">
             Log In
           </Button>
         </Form>
+        <Modal show={isOpen} onHide={this.closeModal}>
+          {errors === "" || errors === true ? (
+            <>
+              <Modal.Header closeButton>
+                <Modal.Title>FAILURE!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                You have entered invalid credentials. Please try again.
+              </Modal.Body>
+            </>
+          ) : (
+            <>
+              <Modal.Header closeButton>
+                <Modal.Title>SUCCESS!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>You have successfully logged in.</Modal.Body>
+            </>
+          )}
+        </Modal>
       </div>
     );
   }

@@ -13,7 +13,10 @@ class Showpage extends Component {
       <section className="showPage">
         <YouTube className="videoPlayer" videoId={id} />
         <hr className="break-line"></hr>
-        <CommentsForm />
+        <CommentsForm
+          isLoggedIn={this.props.isLoggedIn}
+          currentUser={this.props.currentUser}
+        />
       </section>
     );
   }

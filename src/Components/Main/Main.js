@@ -10,6 +10,8 @@ import SignIn from "../NavBar/SignIn/SignIn";
 
 import DisplayCurrentUser from "./DisplayCurrentUser";
 
+import HandleNoRoutes from "./HandleNoRoutes";
+
 import "./Main.scss";
 
 class Main extends Component {
@@ -125,7 +127,15 @@ class Main extends Component {
           />
 
           <Route path="/About" element={<About />} />
-          <Route path="/videos/:id" element={<ShowPage />} />
+          <Route
+            path="/videos/:id"
+            element={
+              <ShowPage
+                isLoggedIn={this.props.isLoggedIn}
+                currentUser={this.state.currentUser}
+              />
+            }
+          />
 
           <Route
             path="/signup"
@@ -146,6 +156,8 @@ class Main extends Component {
               />
             }
           />
+
+          <Route path="*" element={<HandleNoRoutes />} />
         </Routes>
       </div>
     );

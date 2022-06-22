@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 
 import axios from "axios";
 
@@ -10,6 +10,7 @@ class Signup extends Component {
       username: "",
       password: "",
       email: "",
+      isOpen: false,
       errors: null,
     };
   }
@@ -20,7 +21,7 @@ class Signup extends Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const { username, password, email } = this.state;
@@ -36,10 +37,11 @@ class Signup extends Component {
     const devURL = "https://ggb-youtube-clone-server.herokuapp.com/api";
 
     // post request \\
-    axios
+    await axios
       .post(`${devURL}/signup`, user)
       .then((res) => {
         this.props.displayCurrentUser(res.data);
+        this.setState({ isOpen: true });
       })
       .catch((err) => {
         this.setstate({ errors: err.response.data.message });
@@ -56,7 +58,15 @@ class Signup extends Component {
     });
   };
 
+  closeModal = () => {
+    this.setState({
+      isOpen: false,
+      errors: null,
+    });
+  };
+
   render() {
+    const { username, password, email, isOpen, errors } = this.state;
     return (
       <section>
         <Form onSubmit={this.handleSubmit}>
@@ -65,7 +75,7 @@ class Signup extends Component {
             <Form.Control
               type="text"
               name="username"
-              value={this.state.username}
+              value={username}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -75,7 +85,7 @@ class Signup extends Component {
             <Form.Control
               type="password"
               name="password"
-              value={this.state.password}
+              value={password}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -85,7 +95,7 @@ class Signup extends Component {
             <Form.Control
               type="email"
               name="email"
-              value={this.state.email}
+              value={email}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -93,8 +103,27 @@ class Signup extends Component {
           <Button variant="dark" type="submit">
             Submit
           </Button>
-          {this.state.errors ? <p>{this.state.errors}</p> : null}
         </Form>
+        <Modal show={isOpen} onHide={this.closeModal}>
+          {errors ? (
+            <>
+              <Modal.Header closeButton>
+                <Modal.Title>Account Creation Failed!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Your account has failed to be created, You probably used an
+                existing email.
+              </Modal.Body>
+            </>
+          ) : (
+            <>
+              <Modal.Header closeButton>
+                <Modal.Title>Account Successfully Created!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>You have been automatically logged in.</Modal.Body>
+            </>
+          )}
+        </Modal>
       </section>
     );
   }
