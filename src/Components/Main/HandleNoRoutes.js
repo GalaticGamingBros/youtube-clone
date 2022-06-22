@@ -29,7 +29,7 @@ class HandleNoRoutes extends Component {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>ERROR CODE: 400</Modal.Title>
+          <Modal.Title>ERROR CODE: 404</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           How did you even get here? O_O <br />
