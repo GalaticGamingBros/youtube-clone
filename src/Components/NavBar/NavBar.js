@@ -1,9 +1,10 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import YoutubeLogo from "../../Images/youtubeLogo.gif";
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <header className="nav" id="youtube">
       <img
@@ -20,6 +21,23 @@ const NavBar = () => {
       <Link to="/about" id="about">
         About
       </Link>
+
+      {props.isLoggedIn ? (
+        <Button variant="dark" id="logout" onClick={() => props.loggedOut()}>
+          Log Out
+        </Button>
+      ) : (
+        <>
+          <Link to="/signin" id="signin">
+            {" "}
+            Sign In{" "}
+          </Link>
+
+          <Link to="/signup" id="signup">
+            Sign Up
+          </Link>
+        </>
+      )}
     </header>
   );
 };

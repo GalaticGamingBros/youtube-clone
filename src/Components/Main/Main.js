@@ -5,6 +5,13 @@ import Search from "./Search";
 import SearchResults from "./SearchResults";
 import ShowPage from "../ShowPage/ShowPage";
 
+import Signup from "../NavBar/Signup/Signup";
+import SignIn from "../NavBar/SignIn/SignIn";
+
+import DisplayCurrentUser from "./DisplayCurrentUser";
+
+import HandleNoRoutes from "./HandleNoRoutes";
+
 import "./Main.scss";
 
 class Main extends Component {
@@ -14,6 +21,12 @@ class Main extends Component {
       thumbnailsArr: [],
       isOpen: false,
       errors: null,
+      currentUser: {
+        username: "",
+        password: "",
+        email: "",
+        id: "",
+      },
     };
   }
 
@@ -69,6 +82,19 @@ class Main extends Component {
     });
   };
 
+  displayCurrentUser = (userData) => {
+    this.props.currentUserLoggedIn();
+
+    this.setState({
+      currentUser: {
+        username: userData.username,
+        password: userData.password,
+        email: userData.email,
+        id: userData._id,
+      },
+    });
+  };
+
   render() {
     const { thumbnailsArr, errors, isOpen } = this.state;
     let keyNum = 0;
@@ -79,14 +105,19 @@ class Main extends Component {
           <Route
             path="/"
             element={[
-              <Search
+              <DisplayCurrentUser
                 key={(keyNum += 1)}
+                currentUser={this.state.currentUser}
+                isLoggedIn={this.props.isLoggedIn}
+              />,
+              <Search
+                key={(keyNum += 2)}
                 thumbnailsArr={thumbnailsArr}
                 getThumbnails={this.getThumbnails}
                 errors={this.errors}
               />,
               <SearchResults
-                key={(keyNum += 2)}
+                key={(keyNum += 3)}
                 thumbnailsArr={thumbnailsArr}
                 errors={errors}
                 isOpen={isOpen}
@@ -96,7 +127,37 @@ class Main extends Component {
           />
 
           <Route path="/About" element={<About />} />
-          <Route path="/videos/:id" element={<ShowPage />} />
+          <Route
+            path="/videos/:id"
+            element={
+              <ShowPage
+                isLoggedIn={this.props.isLoggedIn}
+                currentUser={this.state.currentUser}
+              />
+            }
+          />
+
+          <Route
+            path="/signup"
+            element={
+              <Signup
+                currentUser={this.state.currentUser}
+                displayCurrentUser={this.displayCurrentUser}
+              />
+            }
+          />
+
+          <Route
+            path="/signin"
+            element={
+              <SignIn
+                currentUser={this.state.currentUser}
+                displayCurrentUser={this.displayCurrentUser}
+              />
+            }
+          />
+
+          <Route path="*" element={<HandleNoRoutes />} />
         </Routes>
       </div>
     );

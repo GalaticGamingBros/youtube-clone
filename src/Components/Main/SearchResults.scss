@@ -2,6 +2,8 @@
   display: grid;
   margin-top: 4em;
   justify-content: center;
+  overflow: auto;
+  height: 100vh;
 
   .no-search-results {
     padding-left: 10.4em;

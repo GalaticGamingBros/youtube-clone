@@ -1,0 +1,20 @@
+.handleNoRoutesModal {
+  background-image: url("../../Images/darkdemoncool.jpg");
+  background-repeat: no-repeat;
+  background-size: fill;
+  background-position: center;
+}
+
+#handleNoRoutesModal {
+  font-size: 30px;
+}
+
+.modalFooter {
+  display: grid;
+  grid-template-columns: reapeat(3, 1fr);
+  gap: 40px;
+}
+
+.modalFooterButton {
+  text-shadow: 3px 3px red, -2px -2px cyan;
+}

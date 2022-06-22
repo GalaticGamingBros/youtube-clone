@@ -20,6 +20,7 @@ export default class CommentsForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     let commentsArrayCopy = [...this.state.commentsArray];
     if (this.state.name === "" || this.state.comment === "") {
       this.handleError();
@@ -33,7 +34,24 @@ export default class CommentsForm extends Component {
         commentsArray: commentsArrayCopy,
       });
     }
+
+    this.clearForm();
   };
+
+  componentDidMount() {
+    const { isLoggedIn, currentUser } = this.props;
+
+    if (isLoggedIn) {
+      this.setState({
+        name: currentUser.username,
+      });
+    } else {
+      this.setState({
+        name: "",
+        comment: "",
+      });
+    }
+  }
 
   addComment = () => {
     const { commentsArray } = this.state;
@@ -64,19 +82,45 @@ export default class CommentsForm extends Component {
     });
   };
 
+  clearForm = () => {
+    const { isLoggedIn } = this.props;
+
+    if (isLoggedIn) {
+      this.setState({
+        comment: "",
+      });
+    } else {
+      this.setState({
+        name: "",
+        comment: "",
+      });
+    }
+  };
+
   render() {
     const { errors, isOpen } = this.state;
+    const { isLoggedIn } = this.props;
+
     return (
       <div className="Form">
         <Form onSubmit={this.handleSubmit} className="CommentSection">
           <Form.Group controlId="formBasicName">
             <Form.Label className="NameLabel">Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Name..."
-              value={this.state.name}
-              onChange={(e) => this.setState({ name: e.target.value })}
-            />
+            {isLoggedIn ? (
+              <Form.Control
+                type="text"
+                placeholder="Name..."
+                value={this.state.name}
+                disabled
+              />
+            ) : (
+              <Form.Control
+                type="text"
+                placeholder="Name..."
+                value={this.state.name}
+                onChange={(e) => this.setState({ name: e.target.value })}
+              />
+            )}
           </Form.Group>
           <Form.Group controlId="formBasicComment">
             <Form.Label>Comment</Form.Label>
