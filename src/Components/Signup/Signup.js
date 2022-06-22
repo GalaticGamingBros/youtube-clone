@@ -31,10 +31,11 @@ class Signup extends Component {
       password: password,
     };
 
-    // const baseURL = "http://localhost:9000/api/";
+    // const localURL = "http://localhost:9000/api/";
 
-    const devURL = "https://git.heroku.com/ggb-youtube-clone-server.git/api";
+    const devURL = "https://ggb-youtube-clone-server.herokuapp.com/api";
 
+    // post request \\
     axios
       .post(`${devURL}/signup`, user)
       .then((res) => {
@@ -46,7 +47,7 @@ class Signup extends Component {
 
     // get request \\
     // axios
-    //   .get(url)
+    //   .get(devURL)
     //   .then((res) => {
     //     console.log(res.data);
     //   })
