@@ -1,13 +1,13 @@
 import "./DisplayCurrentUser.scss";
 
-const displayCurrentUser = (currentUser) => {
+const displayCurrentUser = (props) => {
   return (
     <div className="currentUserContainer">
-      {currentUser.currentUser.username ? (
+      {props.isLoggedIn ? (
         <p>
           Currently Logged In As:{" "}
           <strong className="currentUsersName">
-            {currentUser.currentUser.username}
+            {props.currentUser.username}
           </strong>
         </p>
       ) : null}

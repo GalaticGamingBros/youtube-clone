@@ -3,13 +3,12 @@ import { Form, Button } from "react-bootstrap";
 
 import axios from "axios";
 
-class Signup extends Component {
+class SignIn extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
       email: "",
+      password: "",
       errors: null,
     };
   }
@@ -20,26 +19,18 @@ class Signup extends Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { username, password, email } = this.state;
-
-    const user = {
-      username: username,
-      email: email,
-      password: password,
-    };
-
-    // const localURL = "http://localhost:9000/api/signup";
+    // const localURL = "http://localhost:9000/api/get/";
 
     const devURL = "https://ggb-youtube-clone-server.herokuapp.com/api";
 
-    // post request \\
-    axios
-      .post(`${devURL}/signup`, user)
+    // get request \\
+    await axios
+      .get(`${devURL}/get`)
       .then((res) => {
-        this.props.displayCurrentUser(res.data);
+        this.checkIfUserExists(res.data);
       })
       .catch((err) => {
         this.setstate({ errors: err.response.data.message });
@@ -48,29 +39,44 @@ class Signup extends Component {
     this.clearForm();
   };
 
+  checkIfUserExists = (users) => {
+    const { email, password } = this.state;
+
+    const user = users.find((user) => {
+      return email === user.email && password === user.password;
+    });
+
+    if (user) {
+      this.props.displayCurrentUser(user);
+    } else {
+      this.setState({ errors: "Invalid Credentials" });
+      setTimeout(() => {
+        this.setState({ errors: null });
+      }, 3000);
+    }
+  };
+
   clearForm = () => {
     this.setState({
-      username: "",
-      password: "",
       email: "",
+      password: "",
     });
   };
 
   render() {
     return (
-      <section>
+      <div>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="username">
-            <Form.Label>Username</Form.Label>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
             <Form.Control
-              type="text"
-              name="username"
-              value={this.state.username}
+              type="email"
+              name="email"
+              value={this.state.email}
               onChange={this.handleChange}
             />
           </Form.Group>
-
-          <Form.Group controlId="password">
+          <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
@@ -79,25 +85,15 @@ class Signup extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-
-          <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
           <br />
-          <Button variant="dark" type="submit">
-            Submit
-          </Button>
           {this.state.errors ? <p>{this.state.errors}</p> : null}
+          <Button variant="dark" type="submit">
+            Log In
+          </Button>
         </Form>
-      </section>
+      </div>
     );
   }
 }
 
-export default Signup;
+export default SignIn;

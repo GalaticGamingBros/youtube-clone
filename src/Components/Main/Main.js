@@ -6,6 +6,7 @@ import SearchResults from "./SearchResults";
 import ShowPage from "../ShowPage/ShowPage";
 
 import Signup from "../NavBar/Signup/Signup";
+import SignIn from "../NavBar/SignIn/SignIn";
 
 import DisplayCurrentUser from "./DisplayCurrentUser";
 
@@ -80,6 +81,8 @@ class Main extends Component {
   };
 
   displayCurrentUser = (userData) => {
+    this.props.currentUserLoggedIn();
+
     this.setState({
       currentUser: {
         username: userData.username,
@@ -103,6 +106,7 @@ class Main extends Component {
               <DisplayCurrentUser
                 key={(keyNum += 1)}
                 currentUser={this.state.currentUser}
+                isLoggedIn={this.props.isLoggedIn}
               />,
               <Search
                 key={(keyNum += 2)}
@@ -127,6 +131,16 @@ class Main extends Component {
             path="/signup"
             element={
               <Signup
+                currentUser={this.state.currentUser}
+                displayCurrentUser={this.displayCurrentUser}
+              />
+            }
+          />
+
+          <Route
+            path="/signin"
+            element={
+              <SignIn
                 currentUser={this.state.currentUser}
                 displayCurrentUser={this.displayCurrentUser}
               />
